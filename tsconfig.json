@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "posthog-js": ["./lib/posthog-mock.ts"]
     }
   },
   "include": [
