@@ -15,10 +15,11 @@ const BookEvent = ({ eventId, slug }: { eventId: string, slug: string; }) => {
 
         if (success) {
             setSubmitted(true);
-            posthog.capture('event_booked', { eventId, slug, email })
+            // Note: email is PII — send it via identify(), not capture()
+            posthog.capture('event_booked', { event_id: eventId, slug })
         } else {
             console.error('Booking creation failed')
-            posthog.captureException('Booking creation failed')
+            posthog.captureException(new Error('Booking creation failed'))
         }
     }
 
